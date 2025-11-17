@@ -114,6 +114,11 @@ function hideViewer(){
 }
 viewerOverlay.onclick=e=>{ if(e.target===viewerOverlay) hideViewer() };
 viewerClose.onclick=hideViewer;
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") hideViewer();
+});
+
 [suitFilter,groupFilter,rarityFilter].forEach(x=>x.onchange=render);
 render();
 </script>
