@@ -6,124 +6,103 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
- body { margin:0; font-family:Arial; background:#f7f7f7 }
- .filter-bar { background:white; padding:12px; display:flex; gap:12px; flex-wrap:wrap; border-bottom:2px solid #ddd; position:sticky; top:0 }
- select { padding:6px; font-size:16px }
- .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); padding:15px; gap:10px }
- .card { display:flex; flex-direction:column; align-items:center; gap:4px; font-size:14px; text-align:center; cursor:pointer }
- .card img { width:100%; border-radius:8px; border:1px solid #aaa; background:white }
+body { margin:0; font-family:Arial; background:#f7f7f7 }
+.filter-bar { background:white; padding:12px; display:flex; gap:12px; flex-wrap:wrap; border-bottom:2px solid #ddd; position:sticky; top:0 }
+select { padding:6px; font-size:16px }
+.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); padding:15px; gap:14px; align-items:start }
+.card { display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center }
+.card img { width:100%; border-radius:8px; border:1px solid #aaa; background:white; box-sizing:border-box; aspect-ratio:3/4; object-fit:contain }
 .card.rare img {
-  border: 4px solid transparent;
-  border-radius: 10px;
-  background:
-    linear-gradient(145deg, #ffffff 0%, #cfd1d3 40%, #b7bcc0 60%, #e6e6e6 100%)
-    border-box;
-  box-shadow:
-    0 0 6px 2px rgba(220,220,220,0.7),
-    0 0 18px 4px rgba(240,240,240,0.9),
-    0 0 26px 8px rgba(255,255,255,1);
-  animation: silverPulse 2s ease-in-out infinite alternate;
+  border:4px solid transparent;
+  border-radius:10px;
+  background:linear-gradient(145deg,#ffffff 0%,#cfd1d3 40%,#b7bcc0 60%,#e6e6e6 100%) border-box;
+  box-shadow:0 0 6px 2px rgba(220,220,220,0.7),0 0 18px 4px rgba(240,240,240,0.9),0 0 26px 8px rgba(255,255,255,1);
+  animation:silverPulse 2s ease-in-out infinite alternate;
+  box-sizing:border-box;
 }
-
 @keyframes silverPulse {
-  from {
-    box-shadow:
-      0 0 4px 1px rgba(200,200,200,0.6),
-      0 0 12px 3px rgba(230,230,230,0.7),
-      0 0 16px 6px rgba(255,255,255,0.8);
-  }
-  to {
-    box-shadow:
-      0 0 10px 3px rgba(240,240,240,1),
-      0 0 26px 6px rgba(255,255,255,1),
-      0 0 40px 10px rgba(255,255,255,1);
-  }
+  from { box-shadow:0 0 4px 1px rgba(200,200,200,0.6),0 0 12px 3px rgba(230,230,230,0.7),0 0 16px 6px rgba(255,255,255,0.8) }
+  to { box-shadow:0 0 10px 3px rgba(240,240,240,1),0 0 26px 6px rgba(255,255,255,1),0 0 40px 10px rgba(255,255,255,1) }
 }
- #viewerOverlay { position:fixed; inset:0; background:rgba(0,0,0,0.85); display:none; justify-content:center; align-items:center; z-index:9999 }
- #viewerOverlay img { max-width:90vw; max-height:90vh; border-radius:10px }
- #viewerClose { position:fixed; right:20px; top:10px; font-size:42px; font-weight:bold; color:white; cursor:pointer }
+#viewerOverlay { position:fixed; inset:0; display:none; justify-content:center; align-items:center; background:rgba(0,0,0,0.85); z-index:9999 }
+#viewerOverlay img { max-width:90vw; max-height:90vh; border-radius:10px }
+#viewerClose { position:fixed; right:20px; top:10px; font-size:42px; font-weight:bold; color:white; cursor:pointer }
 </style>
 </head>
 
 <body>
 
 <div class="filter-bar">
+<label>Suit:
+<select id="suitFilter">
+<option value="">All</option>
 
-  <label>Suit:
-    <select id="suitFilter">
-      <option value="">All</option>
-      
-      <option value="spades">Spades</option>
-      
-      <option value="clubs">Clubs</option>
-      
-      <option value="diamonds">Diamonds</option>
-      
-      <option value="hearts">Hearts</option>
-      
-    </select>
-  </label>
+<option value="spades">Spades</option>
 
-  <label>Group:
-    <select id="groupFilter">
-      <option value="">All</option>
-      
-      <option value="major">Major</option>
-      
-      <option value="minor">Minor</option>
-      
-    </select>
-  </label>
+<option value="clubs">Clubs</option>
 
-  <label>Rarity:
-    <select id="rarityFilter">
-      <option value="">All</option>
-      
-      <option value="common">Common</option>
-      
-      <option value="rare">Rare</option>
-      
-    </select>
-  </label>
+<option value="diamonds">Diamonds</option>
 
+<option value="hearts">Hearts</option>
+
+</select>
+</label>
+
+<label>Group:
+<select id="groupFilter">
+<option value="">All</option>
+
+<option value="major">Major</option>
+
+<option value="minor">Minor</option>
+
+</select>
+</label>
+
+<label>Rarity:
+<select id="rarityFilter">
+<option value="">All</option>
+
+<option value="common">Common</option>
+
+<option value="rare">Rare</option>
+
+</select>
+</label>
 </div>
 
 <div id="cards" class="cards"></div>
 
 <div id="viewerOverlay">
-  <div id="viewerClose">✕</div>
-  <img id="viewerImage">
+<div id="viewerClose">✕</div>
+<img id="viewerImage">
 </div>
 
 <script>
-const BASE = "/card-folder";
-const DATA = [{"7_of_spades.webp":{"title":"The Seven of Spades","suit":"spades","group":"minor","rarity":"common","description":"The Seven of Spades is a peculiar and quiet figure."}},{"8_of_spades.webp":{"title":"The Eight of Spades","suit":"spades","group":"minor","rarity":"common","description":"The Eight of Spades is a confident and stoic presence."}},{"9_of_spades.webp":{"title":"The Nine of Spades","suit":"spades","group":"minor","rarity":"common","description":"The Nine of Spades is a guarded and thoughtful soul."}},{"10_of_spades.webp":{"title":"The Ten of Spades","suit":"spades","group":"minor","rarity":"common","description":"The Ten of Spades is a fierce and enigmatic traveler."}},{"jack_of_spades.webp":{"title":"The Jack of Spades","suit":"spades","group":"major","rarity":"common","description":"The Jack of Spades is a cunning and swift wanderer."}},{"jack_of_spades2.webp":{"title":"The Jack of Spades","suit":"spades","group":"major","rarity":"rare","description":"The Jack of Spades is a cunning and swift wanderer."}},{"queen_of_spades.webp":{"title":"The Queen of Spades","suit":"spades","group":"major","rarity":"common","description":"The Queen of Spades is a regal and calculating ruler."}},{"queen_of_spades2.webp":{"title":"The Queen of Spades","suit":"spades","group":"major","rarity":"rare","description":"The Queen of Spades is a regal and calculating ruler."}},{"king_of_spades.webp":{"title":"The King of Spades","suit":"spades","group":"major","rarity":"common","description":"The King of Spades is a ruling and determined figure."}},{"king_of_spades2.webp":{"title":"The King of Spades","suit":"spades","group":"major","rarity":"rare","description":"The King of Spades is a ruling and determined figure."}},{"ace_of_spades.webp":{"title":"The Ace of Spades","suit":"spades","group":"major","rarity":"common","description":"The Ace of Spades is a bold and mysterious entity."}},{"7_of_clubs.webp":{"title":"The Seven of Clubs","suit":"clubs","group":"minor","rarity":"common","description":"The Seven of Clubs is a curious and quiet traveler."}},{"8_of_clubs.webp":{"title":"The Eight of Clubs","suit":"clubs","group":"minor","rarity":"common","description":"The Eight of Clubs is a focused and resilient mind."}},{"9_of_clubs.webp":{"title":"The Nine of Clubs","suit":"clubs","group":"minor","rarity":"common","description":"The Nine of Clubs is a wandering and patient figure."}},{"10_of_clubs.webp":{"title":"The Ten of Clubs","suit":"clubs","group":"minor","rarity":"common","description":"The Ten of Clubs is a bold and clever strategist."}},{"jack_of_clubs.webp":{"title":"The Jack of Clubs","suit":"clubs","group":"major","rarity":"common","description":"The Jack of Clubs is a nimble and daring fighter."}},{"jack_of_clubs2.webp":{"title":"The Jack of Clubs","suit":"clubs","group":"major","rarity":"rare","description":"The Jack of Clubs is a nimble and daring fighter."}},{"queen_of_clubs.webp":{"title":"The Queen of Clubs","suit":"clubs","group":"major","rarity":"common","description":"The Queen of Clubs is a graceful and strategic thinker."}},{"queen_of_clubs2.webp":{"title":"The Queen of Clubs","suit":"clubs","group":"major","rarity":"rare","description":"The Queen of Clubs is a graceful and strategic thinker."}},{"king_of_clubs.webp":{"title":"The King of Clubs","suit":"clubs","group":"major","rarity":"common","description":"The King of Clubs is a stern and calculating ruler."}},{"king_of_clubs2.webp":{"title":"The King of Clubs","suit":"clubs","group":"major","rarity":"rare","description":"The King of Clubs is a stern and calculating ruler."}},{"ace_of_clubs.webp":{"title":"The Ace of Clubs","suit":"clubs","group":"major","rarity":"common","description":"The Ace of Clubs is a determined and powerful soul."}},{"7_of_diamonds.webp":{"title":"The Seven of Diamonds","suit":"diamonds","group":"minor","rarity":"common","description":"The Seven of Diamonds is an ambitious and bright spirit."}},{"8_of_diamonds.webp":{"title":"The Eight of Diamonds","suit":"diamonds","group":"minor","rarity":"common","description":"The Eight of Diamonds is a keen and confident explorer."}},{"9_of_diamonds.webp":{"title":"The Nine of Diamonds","suit":"diamonds","group":"minor","rarity":"common","description":"The Nine of Diamonds is a reserved and patient figure."}},{"10_of_diamonds.webp":{"title":"The Ten of Diamonds","suit":"diamonds","group":"minor","rarity":"common","description":"The Ten of Diamonds is a careful and insightful observer."}},{"jack_of_diamonds.webp":{"title":"The Jack of Diamonds","suit":"diamonds","group":"major","rarity":"common","description":"The Jack of Diamonds is a sharp and daring trickster."}},{"jack_of_diamonds2.webp":{"title":"The Jack of Diamonds","suit":"diamonds","group":"major","rarity":"rare","description":"The Jack of Diamonds is a sharp and daring trickster."}},{"queen_of_diamonds.webp":{"title":"The Queen of Diamonds","suit":"diamonds","group":"major","rarity":"common","description":"The Queen of Diamonds is a refined and brilliant ruler."}},{"queen_of_diamonds2.webp":{"title":"The Queen of Diamonds","suit":"diamonds","group":"major","rarity":"rare","description":"The Queen of Diamonds is a refined and brilliant ruler."}},{"king_of_diamonds.webp":{"title":"The King of Diamonds","suit":"diamonds","group":"major","rarity":"common","description":"The King of Diamonds is a wise and ambitious leader."}},{"king_of_diamonds2.webp":{"title":"The King of Diamonds","suit":"diamonds","group":"major","rarity":"rare","description":"The King of Diamonds is a wise and ambitious leader."}},{"ace_of_diamonds.webp":{"title":"The Ace of Diamonds","suit":"diamonds","group":"major","rarity":"common","description":"The Ace of Diamonds is a daring and analytical force."}},{"7_of_hearts.webp":{"title":"The Seven of Hearts","suit":"hearts","group":"minor","rarity":"common","description":"The Seven of Hearts is a tender and secretive spirit."}},{"8_of_hearts.webp":{"title":"The Eight of Hearts","suit":"hearts","group":"minor","rarity":"common","description":"The Eight of Hearts is a warm and patient dreamer."}},{"9_of_hearts.webp":{"title":"The Nine of Hearts","suit":"hearts","group":"minor","rarity":"common","description":"The Nine of Hearts is a gentle and thoughtful listener."}},{"10_of_hearts.webp":{"title":"The Ten of Hearts","suit":"hearts","group":"minor","rarity":"common","description":"The Ten of Hearts radiates kindness and confidence."}},{"jack_of_hearts.webp":{"title":"The Jack of Hearts","suit":"hearts","group":"major","rarity":"common","description":"The Jack of Hearts is a romantic and daring hero."}},{"jack_of_hearts2.webp":{"title":"The Jack of Hearts","suit":"hearts","group":"major","rarity":"rare","description":"The Jack of Hearts is a romantic and daring hero."}},{"queen_of_hearts.webp":{"title":"The Queen of Hearts","suit":"hearts","group":"major","rarity":"common","description":"The Queen of Hearts is a graceful and devoted monarch."}},{"queen_of_hearts2.webp":{"title":"The Queen of Hearts","suit":"hearts","group":"major","rarity":"rare","description":"The Queen of Hearts is a graceful and devoted monarch."}},{"king_of_hearts.webp":{"title":"The King of Hearts","suit":"hearts","group":"major","rarity":"common","description":"The King of Hearts is a passionate and loyal ruler."}},{"king_of_hearts2.webp":{"title":"The King of Hearts","suit":"hearts","group":"major","rarity":"rare","description":"The King of Hearts is a passionate and loyal ruler."}},{"ace_of_hearts.webp":{"title":"The Ace of Hearts","suit":"hearts","group":"major","rarity":"common","description":"The Ace of Hearts carries deep emotion and resolve."}}];
+const BASE="/card-folder";
+const DATA=[{"7_of_spades.webp":{"title":"The Seven of Spades","suit":"spades","group":"minor","rarity":"common","description":"The Seven of Spades is a peculiar and quiet figure."}},{"8_of_spades.webp":{"title":"The Eight of Spades","suit":"spades","group":"minor","rarity":"common","description":"The Eight of Spades is a confident and stoic presence."}},{"9_of_spades.webp":{"title":"The Nine of Spades","suit":"spades","group":"minor","rarity":"common","description":"The Nine of Spades is a guarded and thoughtful soul."}},{"10_of_spades.webp":{"title":"The Ten of Spades","suit":"spades","group":"minor","rarity":"common","description":"The Ten of Spades is a fierce and enigmatic traveler."}},{"jack_of_spades.webp":{"title":"The Jack of Spades","suit":"spades","group":"major","rarity":"common","description":"The Jack of Spades is a cunning and swift wanderer."}},{"jack_of_spades2.webp":{"title":"The Jack of Spades","suit":"spades","group":"major","rarity":"rare","description":"The Jack of Spades is a cunning and swift wanderer."}},{"queen_of_spades.webp":{"title":"The Queen of Spades","suit":"spades","group":"major","rarity":"common","description":"The Queen of Spades is a regal and calculating ruler."}},{"queen_of_spades2.webp":{"title":"The Queen of Spades","suit":"spades","group":"major","rarity":"rare","description":"The Queen of Spades is a regal and calculating ruler."}},{"king_of_spades.webp":{"title":"The King of Spades","suit":"spades","group":"major","rarity":"common","description":"The King of Spades is a ruling and determined figure."}},{"king_of_spades2.webp":{"title":"The King of Spades","suit":"spades","group":"major","rarity":"rare","description":"The King of Spades is a ruling and determined figure."}},{"ace_of_spades.webp":{"title":"The Ace of Spades","suit":"spades","group":"major","rarity":"common","description":"The Ace of Spades is a bold and mysterious entity."}},{"7_of_clubs.webp":{"title":"The Seven of Clubs","suit":"clubs","group":"minor","rarity":"common","description":"The Seven of Clubs is a curious and quiet traveler."}},{"8_of_clubs.webp":{"title":"The Eight of Clubs","suit":"clubs","group":"minor","rarity":"common","description":"The Eight of Clubs is a focused and resilient mind."}},{"9_of_clubs.webp":{"title":"The Nine of Clubs","suit":"clubs","group":"minor","rarity":"common","description":"The Nine of Clubs is a wandering and patient figure."}},{"10_of_clubs.webp":{"title":"The Ten of Clubs","suit":"clubs","group":"minor","rarity":"common","description":"The Ten of Clubs is a bold and clever strategist."}},{"jack_of_clubs.webp":{"title":"The Jack of Clubs","suit":"clubs","group":"major","rarity":"common","description":"The Jack of Clubs is a nimble and daring fighter."}},{"jack_of_clubs2.webp":{"title":"The Jack of Clubs","suit":"clubs","group":"major","rarity":"rare","description":"The Jack of Clubs is a nimble and daring fighter."}},{"queen_of_clubs.webp":{"title":"The Queen of Clubs","suit":"clubs","group":"major","rarity":"common","description":"The Queen of Clubs is a graceful and strategic thinker."}},{"queen_of_clubs2.webp":{"title":"The Queen of Clubs","suit":"clubs","group":"major","rarity":"rare","description":"The Queen of Clubs is a graceful and strategic thinker."}},{"king_of_clubs.webp":{"title":"The King of Clubs","suit":"clubs","group":"major","rarity":"common","description":"The King of Clubs is a stern and calculating ruler."}},{"king_of_clubs2.webp":{"title":"The King of Clubs","suit":"clubs","group":"major","rarity":"rare","description":"The King of Clubs is a stern and calculating ruler."}},{"ace_of_clubs.webp":{"title":"The Ace of Clubs","suit":"clubs","group":"major","rarity":"common","description":"The Ace of Clubs is a determined and powerful soul."}},{"7_of_diamonds.webp":{"title":"The Seven of Diamonds","suit":"diamonds","group":"minor","rarity":"common","description":"The Seven of Diamonds is an ambitious and bright spirit."}},{"8_of_diamonds.webp":{"title":"The Eight of Diamonds","suit":"diamonds","group":"minor","rarity":"common","description":"The Eight of Diamonds is a keen and confident explorer."}},{"9_of_diamonds.webp":{"title":"The Nine of Diamonds","suit":"diamonds","group":"minor","rarity":"common","description":"The Nine of Diamonds is a reserved and patient figure."}},{"10_of_diamonds.webp":{"title":"The Ten of Diamonds","suit":"diamonds","group":"minor","rarity":"common","description":"The Ten of Diamonds is a careful and insightful observer."}},{"jack_of_diamonds.webp":{"title":"The Jack of Diamonds","suit":"diamonds","group":"major","rarity":"common","description":"The Jack of Diamonds is a sharp and daring trickster."}},{"jack_of_diamonds2.webp":{"title":"The Jack of Diamonds","suit":"diamonds","group":"major","rarity":"rare","description":"The Jack of Diamonds is a sharp and daring trickster."}},{"queen_of_diamonds.webp":{"title":"The Queen of Diamonds","suit":"diamonds","group":"major","rarity":"common","description":"The Queen of Diamonds is a refined and brilliant ruler."}},{"queen_of_diamonds2.webp":{"title":"The Queen of Diamonds","suit":"diamonds","group":"major","rarity":"rare","description":"The Queen of Diamonds is a refined and brilliant ruler."}},{"king_of_diamonds.webp":{"title":"The King of Diamonds","suit":"diamonds","group":"major","rarity":"common","description":"The King of Diamonds is a wise and ambitious leader."}},{"king_of_diamonds2.webp":{"title":"The King of Diamonds","suit":"diamonds","group":"major","rarity":"rare","description":"The King of Diamonds is a wise and ambitious leader."}},{"ace_of_diamonds.webp":{"title":"The Ace of Diamonds","suit":"diamonds","group":"major","rarity":"common","description":"The Ace of Diamonds is a daring and analytical force."}},{"7_of_hearts.webp":{"title":"The Seven of Hearts","suit":"hearts","group":"minor","rarity":"common","description":"The Seven of Hearts is a tender and secretive spirit."}},{"8_of_hearts.webp":{"title":"The Eight of Hearts","suit":"hearts","group":"minor","rarity":"common","description":"The Eight of Hearts is a warm and patient dreamer."}},{"9_of_hearts.webp":{"title":"The Nine of Hearts","suit":"hearts","group":"minor","rarity":"common","description":"The Nine of Hearts is a gentle and thoughtful listener."}},{"10_of_hearts.webp":{"title":"The Ten of Hearts","suit":"hearts","group":"minor","rarity":"common","description":"The Ten of Hearts radiates kindness and confidence."}},{"jack_of_hearts.webp":{"title":"The Jack of Hearts","suit":"hearts","group":"major","rarity":"common","description":"The Jack of Hearts is a romantic and daring hero."}},{"jack_of_hearts2.webp":{"title":"The Jack of Hearts","suit":"hearts","group":"major","rarity":"rare","description":"The Jack of Hearts is a romantic and daring hero."}},{"queen_of_hearts.webp":{"title":"The Queen of Hearts","suit":"hearts","group":"major","rarity":"common","description":"The Queen of Hearts is a graceful and devoted monarch."}},{"queen_of_hearts2.webp":{"title":"The Queen of Hearts","suit":"hearts","group":"major","rarity":"rare","description":"The Queen of Hearts is a graceful and devoted monarch."}},{"king_of_hearts.webp":{"title":"The King of Hearts","suit":"hearts","group":"major","rarity":"common","description":"The King of Hearts is a passionate and loyal ruler."}},{"king_of_hearts2.webp":{"title":"The King of Hearts","suit":"hearts","group":"major","rarity":"rare","description":"The King of Hearts is a passionate and loyal ruler."}},{"ace_of_hearts.webp":{"title":"The Ace of Hearts","suit":"hearts","group":"major","rarity":"common","description":"The Ace of Hearts carries deep emotion and resolve."}}];
 
-function render() {
+function render(){
   const fSuit=suitFilter.value, fGroup=groupFilter.value, fRarity=rarityFilter.value;
   const root=document.getElementById("cards");
   root.innerHTML="";
-
   DATA.forEach(entry=>{
     const [file,meta]=Object.entries(entry)[0];
     if(fSuit && meta.suit!==fSuit) return;
     if(fGroup && meta.group!==fGroup) return;
     if(fRarity && meta.rarity!==fRarity) return;
-
     const wrap=document.createElement("div");
     wrap.className="card"+(meta.rarity==="rare"?" rare":"");
-
     const img=document.createElement("img");
     img.src=`${BASE}/assets/cards/${file}`;
     img.alt=meta.description;
     img.title=meta.title;
+    img.style.cursor="pointer";
     img.onclick=()=>showViewer(img.src);
-
     const link=document.createElement("a");
     link.href=`${BASE}/cards/${file.replace(".webp","")}.html`;
     link.target="_blank";
     link.textContent=meta.title;
-
     wrap.appendChild(img);
     wrap.appendChild(link);
     root.appendChild(wrap);
@@ -134,16 +113,13 @@ function showViewer(src){
   viewerImage.src=src;
   viewerOverlay.style.display="flex";
 }
-
 function hideViewer(){
   viewerOverlay.style.display="none";
   viewerImage.src="";
 }
-
-viewerOverlay.onclick=e=>{ if(e.target===viewerOverlay) hideViewer(); };
+viewerOverlay.onclick=e=>{ if(e.target===viewerOverlay) hideViewer() };
 viewerClose.onclick=hideViewer;
-[suitFilter,groupFilter,rarityFilter].forEach(el=>el.onchange=render);
-
+[suitFilter,groupFilter,rarityFilter].forEach(x=>x.onchange=render);
 render();
 </script>
 
