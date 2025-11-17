@@ -1,33 +1,39 @@
-name: Build and Deploy
+name: Build and Deploy Cards
 
 on:
   push:
     branches: ["main"]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
+    - uses: ruby/setup-ruby@v1
       with:
         ruby-version: "3.3"
 
-    - name: Install dependencies
-      run: bundle install
+    - run: bundle install
 
-    - name: Generate card pages
-      run: ruby scripts/generate_cards.rb
+    - run: ruby scripts/generate_cards.rb
 
-    - name: Build Jekyll
-      run: bundle exec jekyll build
+    - run: bundle exec jekyll build
 
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
       with:
-        personal_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./_site
+        path: ./_site
+
+    - name: Deploy
+      id: deployment
+      uses: actions/deploy-pages@v4
