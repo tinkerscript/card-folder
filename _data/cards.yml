@@ -1,0 +1,322 @@
+suits:
+  spades: Spades
+  clubs: Clubs
+  diamonds: Diamonds
+  hearts: Hearts
+
+groups:
+  major: Major
+  minor: Minor
+
+rarity:
+  common: Common
+  rare: Rare
+
+cards:
+  - 7_of_spades.webp:
+      title: "The Seven of Spades"
+      suit: spades
+      group: minor
+      rarity: common
+      description: "The Seven of Spades is a peculiar and quiet figure."
+
+  - 8_of_spades.webp:
+      title: "The Eight of Spades"
+      suit: spades
+      group: minor
+      rarity: common
+      description: "The Eight of Spades is a confident and stoic presence."
+
+  - 9_of_spades.webp:
+      title: "The Nine of Spades"
+      suit: spades
+      group: minor
+      rarity: common
+      description: "The Nine of Spades is a guarded and thoughtful soul."
+
+  - 10_of_spades.webp:
+      title: "The Ten of Spades"
+      suit: spades
+      group: minor
+      rarity: common
+      description: "The Ten of Spades is a fierce and enigmatic traveler."
+
+  - jack_of_spades.webp:
+      title: "The Jack of Spades"
+      suit: spades
+      group: major
+      rarity: common
+      description: "The Jack of Spades is a cunning and swift wanderer."
+
+  - jack_of_spades2.webp:
+      title: "The Jack of Spades"
+      suit: spades
+      group: major
+      rarity: rare
+      description: "The Jack of Spades is a cunning and swift wanderer."
+
+  - queen_of_spades.webp:
+      title: "The Queen of Spades"
+      suit: spades
+      group: major
+      rarity: common
+      description: "The Queen of Spades is a regal and calculating ruler."
+
+  - queen_of_spades2.webp:
+      title: "The Queen of Spades"
+      suit: spades
+      group: major
+      rarity: rare
+      description: "The Queen of Spades is a regal and calculating ruler."
+
+  - king_of_spades.webp:
+      title: "The King of Spades"
+      suit: spades
+      group: major
+      rarity: common
+      description: "The King of Spades is a ruling and determined figure."
+
+  - king_of_spades2.webp:
+      title: "The King of Spades"
+      suit: spades
+      group: major
+      rarity: rare
+      description: "The King of Spades is a ruling and determined figure."
+
+  - ace_of_spades.webp:
+      title: "The Ace of Spades"
+      suit: spades
+      group: major
+      rarity: common
+      description: "The Ace of Spades is a bold and mysterious entity."
+
+  - 7_of_clubs.webp:
+      title: "The Seven of Clubs"
+      suit: clubs
+      group: minor
+      rarity: common
+      description: "The Seven of Clubs is a curious and quiet traveler."
+
+  - 8_of_clubs.webp:
+      title: "The Eight of Clubs"
+      suit: clubs
+      group: minor
+      rarity: common
+      description: "The Eight of Clubs is a focused and resilient mind."
+
+  - 9_of_clubs.webp:
+      title: "The Nine of Clubs"
+      suit: clubs
+      group: minor
+      rarity: common
+      description: "The Nine of Clubs is a wandering and patient figure."
+
+  - 10_of_clubs.webp:
+      title: "The Ten of Clubs"
+      suit: clubs
+      group: minor
+      rarity: common
+      description: "The Ten of Clubs is a bold and clever strategist."
+
+  - jack_of_clubs.webp:
+      title: "The Jack of Clubs"
+      suit: clubs
+      group: major
+      rarity: common
+      description: "The Jack of Clubs is a nimble and daring fighter."
+
+  - jack_of_clubs2.webp:
+      title: "The Jack of Clubs"
+      suit: clubs
+      group: major
+      rarity: rare
+      description: "The Jack of Clubs is a nimble and daring fighter."
+
+  - queen_of_clubs.webp:
+      title: "The Queen of Clubs"
+      suit: clubs
+      group: major
+      rarity: common
+      description: "The Queen of Clubs is a graceful and strategic thinker."
+
+  - queen_of_clubs2.webp:
+      title: "The Queen of Clubs"
+      suit: clubs
+      group: major
+      rarity: rare
+      description: "The Queen of Clubs is a graceful and strategic thinker."
+
+  - king_of_clubs.webp:
+      title: "The King of Clubs"
+      suit: clubs
+      group: major
+      rarity: common
+      description: "The King of Clubs is a stern and calculating ruler."
+
+  - king_of_clubs2.webp:
+      title: "The King of Clubs"
+      suit: clubs
+      group: major
+      rarity: rare
+      description: "The King of Clubs is a stern and calculating ruler."
+
+  - ace_of_clubs.webp:
+      title: "The Ace of Clubs"
+      suit: clubs
+      group: major
+      rarity: common
+      description: "The Ace of Clubs is a determined and powerful soul."
+
+  - 7_of_diamonds.webp:
+      title: "The Seven of Diamonds"
+      suit: diamonds
+      group: minor
+      rarity: common
+      description: "The Seven of Diamonds is an ambitious and bright spirit."
+
+  - 8_of_diamonds.webp:
+      title: "The Eight of Diamonds"
+      suit: diamonds
+      group: minor
+      rarity: common
+      description: "The Eight of Diamonds is a keen and confident explorer."
+
+  - 9_of_diamonds.webp:
+      title: "The Nine of Diamonds"
+      suit: diamonds
+      group: minor
+      rarity: common
+      description: "The Nine of Diamonds is a reserved and patient figure."
+
+  - 10_of_diamonds.webp:
+      title: "The Ten of Diamonds"
+      suit: diamonds
+      group: minor
+      rarity: common
+      description: "The Ten of Diamonds is a careful and insightful observer."
+
+  - jack_of_diamonds.webp:
+      title: "The Jack of Diamonds"
+      suit: diamonds
+      group: major
+      rarity: common
+      description: "The Jack of Diamonds is a sharp and daring trickster."
+
+  - jack_of_diamonds2.webp:
+      title: "The Jack of Diamonds"
+      suit: diamonds
+      group: major
+      rarity: rare
+      description: "The Jack of Diamonds is a sharp and daring trickster."
+
+  - queen_of_diamonds.webp:
+      title: "The Queen of Diamonds"
+      suit: diamonds
+      group: major
+      rarity: common
+      description: "The Queen of Diamonds is a refined and brilliant ruler."
+
+  - queen_of_diamonds2.webp:
+      title: "The Queen of Diamonds"
+      suit: diamonds
+      group: major
+      rarity: rare
+      description: "The Queen of Diamonds is a refined and brilliant ruler."
+
+  - king_of_diamonds.webp:
+      title: "The King of Diamonds"
+      suit: diamonds
+      group: major
+      rarity: common
+      description: "The King of Diamonds is a wise and ambitious leader."
+
+  - king_of_diamonds2.webp:
+      title: "The King of Diamonds"
+      suit: diamonds
+      group: major
+      rarity: rare
+      description: "The King of Diamonds is a wise and ambitious leader."
+
+  - ace_of_diamonds.webp:
+      title: "The Ace of Diamonds"
+      suit: diamonds
+      group: major
+      rarity: common
+      description: "The Ace of Diamonds is a daring and analytical force."
+
+  - 7_of_hearts.webp:
+      title: "The Seven of Hearts"
+      suit: hearts
+      group: minor
+      rarity: common
+      description: "The Seven of Hearts is a tender and secretive spirit."
+
+  - 8_of_hearts.webp:
+      title: "The Eight of Hearts"
+      suit: hearts
+      group: minor
+      rarity: common
+      description: "The Eight of Hearts is a warm and patient dreamer."
+
+  - 9_of_hearts.webp:
+      title: "The Nine of Hearts"
+      suit: hearts
+      group: minor
+      rarity: common
+      description: "The Nine of Hearts is a gentle and thoughtful listener."
+
+  - 10_of_hearts.webp:
+      title: "The Ten of Hearts"
+      suit: hearts
+      group: minor
+      rarity: common
+      description: "The Ten of Hearts radiates kindness and confidence."
+
+  - jack_of_hearts.webp:
+      title: "The Jack of Hearts"
+      suit: hearts
+      group: major
+      rarity: common
+      description: "The Jack of Hearts is a romantic and daring hero."
+
+  - jack_of_hearts2.webp:
+      title: "The Jack of Hearts"
+      suit: hearts
+      group: major
+      rarity: rare
+      description: "The Jack of Hearts is a romantic and daring hero."
+
+  - queen_of_hearts.webp:
+      title: "The Queen of Hearts"
+      suit: hearts
+      group: major
+      rarity: common
+      description: "The Queen of Hearts is a graceful and devoted monarch."
+
+  - queen_of_hearts2.webp:
+      title: "The Queen of Hearts"
+      suit: hearts
+      group: major
+      rarity: rare
+      description: "The Queen of Hearts is a graceful and devoted monarch."
+
+  - king_of_hearts.webp:
+      title: "The King of Hearts"
+      suit: hearts
+      group: major
+      rarity: common
+      description: "The King of Hearts is a passionate and loyal ruler."
+
+  - king_of_hearts2.webp:
+      title: "The King of Hearts"
+      suit: hearts
+      group: major
+      rarity: rare
+      description: "The King of Hearts is a passionate and loyal ruler."
+
+  - ace_of_hearts.webp:
+      title: "The Ace of Hearts"
+      suit: hearts
+      group: major
+      rarity: common
+      description: "The Ace of Hearts carries deep emotion and resolve."

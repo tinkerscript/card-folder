@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ page.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { margin:0; font-family:Arial; background:#fafafa }
+    a.back { display:block; padding:15px; font-size:18px; text-decoration:none }
+    .container { display:flex; gap:20px; padding:20px }
+    img { max-width:50vw; max-height:90vh; border-radius:10px }
+    .info { font-size:20px; line-height:1.5 }
+  </style>
+</head>
+<body>
+
+<a class="back" href="{{ site.baseurl }}/">← Back</a>
+
+<div class="container">
+  <img src="{{ site.baseurl }}/assets/cards/{{ page.file }}" alt="{{ page.description }}">
+  <div class="info">
+    <h1>{{ page.title }}</h1>
+    <p><b>Suit:</b> {{ page.suit }}</p>
+    <p><b>Group:</b> {{ page.group }}</p>
+    <p><b>Rarity:</b> {{ page.rarity }}</p>
+    <p>{{ page.description }}</p>
+  </div>
+</div>
+
+</body>
+</html>

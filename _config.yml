@@ -1,0 +1,10 @@
+title: "Card Viewer"
+baseurl: "/card-folder"
+markdown: kramdown
+theme: null
+include:
+  - cards
+plugins:
+  - jekyll-redirect-from
+  - jekyll-sitemap
+  - jekyll-feed
